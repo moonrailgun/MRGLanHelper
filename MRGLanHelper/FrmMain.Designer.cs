@@ -44,8 +44,8 @@
             this.UpDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MacAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MacRemarkName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsRunShare = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.IsRunHelper = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.IsRunShare = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.OSVersion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ping = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skinTabControl1.SuspendLayout();
@@ -147,8 +147,8 @@
             this.UpDateTime,
             this.MacAddress,
             this.MacRemarkName,
-            this.IsRunShare,
             this.IsRunHelper,
+            this.IsRunShare,
             this.OSVersion,
             this.Ping});
             this.skinDataGridView1.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
@@ -239,6 +239,15 @@
             this.MacRemarkName.MinimumWidth = 100;
             this.MacRemarkName.Name = "MacRemarkName";
             // 
+            // IsRunHelper
+            // 
+            this.IsRunHelper.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.IsRunHelper.HeaderText = "是否开启助手";
+            this.IsRunHelper.Name = "IsRunHelper";
+            this.IsRunHelper.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.IsRunHelper.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IsRunHelper.Width = 104;
+            // 
             // IsRunShare
             // 
             this.IsRunShare.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -248,15 +257,6 @@
             this.IsRunShare.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.IsRunShare.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.IsRunShare.Width = 104;
-            // 
-            // IsRunHelper
-            // 
-            this.IsRunHelper.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.IsRunHelper.HeaderText = "是否开启助手";
-            this.IsRunHelper.Name = "IsRunHelper";
-            this.IsRunHelper.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.IsRunHelper.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.IsRunHelper.Width = 104;
             // 
             // OSVersion
             // 
@@ -301,8 +301,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UpDateTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn MacAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn MacRemarkName;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn IsRunShare;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsRunHelper;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsRunShare;
         private System.Windows.Forms.DataGridViewTextBoxColumn OSVersion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ping;
     }
