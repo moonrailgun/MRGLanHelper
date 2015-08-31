@@ -58,9 +58,25 @@ namespace MRGLanHelper
         private void UpdateLanList()
         {
             //清空原先数据
-            skinDataGridView1.Rows.Clear();
+            ClearOnlineIPData();
 
             GetLanOnlineIP();
+        }
+
+        /// <summary>
+        /// 清空在线数据
+        /// </summary>
+        private void ClearOnlineIPData()
+        {
+            skinDataGridView1.Rows.Clear();
+            onlineIPList.Clear();
+            if (pingList.Count > 0)
+            {
+                foreach (Ping ping in pingList)
+                {
+                    ping.SendAsyncCancel();
+                }
+            }
         }
 
         private void skinButton1_Click(object sender, EventArgs e)
@@ -77,14 +93,21 @@ namespace MRGLanHelper
             string localIP = this.selectedLocalIP;
             string[] ipStrArray = localIP.Split(new char[] { '.' });
             string ipNetworkSegment = ipStrArray[0] + "." + ipStrArray[1] + "." + ipStrArray[2];
-
-            for (int i = 1; i <= 255; i++)
+            try
             {
-                Ping myPing = new Ping();
-                pingList.Add(myPing);
-                myPing.PingCompleted += new PingCompletedEventHandler(_onPingCompleted);//添加回调事件
-                string pingIP = ipNetworkSegment + "." + i.ToString();
-                myPing.SendAsync(pingIP, 10000, null);
+
+                for (int i = 1; i <= 255; i++)
+                {
+                    Ping myPing = new Ping();
+                    pingList.Add(myPing);
+                    myPing.PingCompleted += new PingCompletedEventHandler(_onPingCompleted);//添加回调事件
+                    string pingIP = ipNetworkSegment + "." + i.ToString();
+                    myPing.SendAsync(pingIP, 10000, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "错误!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void _onPingCompleted(object sender, PingCompletedEventArgs e)
@@ -96,10 +119,15 @@ namespace MRGLanHelper
             if (e.Reply.Status == IPStatus.Success)
             {
                 string ipaddress = e.Reply.Address.ToString();
-                string ping = string.Format("{0} (Ttl:{1} Len:{2})", e.Reply.RoundtripTime.ToString(), e.Reply.Options.Ttl.ToString(), e.Reply.Buffer.Length.ToString());
+                string ping = string.Format("{0}ms (Ttl:{1} Len:{2})", e.Reply.RoundtripTime.ToString(), e.Reply.Options.Ttl.ToString(), e.Reply.Buffer.Length.ToString());
                 onlineIPList.Add(ipaddress);//添加到在线IP列表
                 
                 AddGridItemInvoke(skinDataGridView1, new IPAddressGridItem(ipaddress,"","","",false,false,"",ping));
+            }
+
+            if (!e.Cancelled)
+            {
+                myPing.SendAsyncCancel();
             }
         }
 
