@@ -8,15 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CCWin;
+using CCWin.SkinControl;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Net.Sockets;
+using MRGLanHelper.Model;
 
 namespace MRGLanHelper
 {
     public partial class FrmMain : Skin_Mac
     {
+        public string selectedLocalIP = "";
+        List<string> onlineIPList = new List<string>();
+
         public FrmMain()
         {
             InitializeComponent();
@@ -43,7 +48,7 @@ namespace MRGLanHelper
                 }
             }
 
-            //Dns.GetHostEntry(_myHostName).AddressList[0].ToString();
+            this.UpdateLanList();
         }
 
         /// <summary>
@@ -54,44 +59,98 @@ namespace MRGLanHelper
             //清空原先数据
             skinDataGridView1.Rows.Clear();
 
-            DataGridViewTextBoxCell ipAddress = new DataGridViewTextBoxCell();
-            DataGridViewTextBoxCell upDateTime = new DataGridViewTextBoxCell();
-            DataGridViewTextBoxCell macAddress = new DataGridViewTextBoxCell();
-            DataGridViewTextBoxCell macRemarkName = new DataGridViewTextBoxCell();
-            DataGridViewCheckBoxCell isRunHelper = new DataGridViewCheckBoxCell();
-            DataGridViewCheckBoxCell isRunShare = new DataGridViewCheckBoxCell();
-            DataGridViewTextBoxCell osVersion = new DataGridViewTextBoxCell();
-            DataGridViewTextBoxCell ping = new DataGridViewTextBoxCell();
-
-            DataGridViewRow row = new DataGridViewRow();
-            ipAddress.Value = "a";
-            upDateTime.Value = "b";
-            macAddress.Value = "c";
-            macRemarkName.Value = "d";
-            isRunHelper.Value = true;
-            isRunShare.Value = false;
-            osVersion.Value = "e";
-            ping.Value = "f";
-
-            row.Cells.Add(ipAddress);
-            row.Cells.Add(upDateTime);
-            row.Cells.Add(macAddress);
-            row.Cells.Add(macRemarkName);
-            row.Cells.Add(isRunHelper);
-            row.Cells.Add(isRunShare);
-            row.Cells.Add(osVersion);
-            row.Cells.Add(ping);
-
-            skinDataGridView1.Rows.Add(row);
+            GetLanOnlineIP();
         }
 
         private void skinButton1_Click(object sender, EventArgs e)
         {
             this.UpdateLanList();
         }
+
+        private void GetLanOnlineIP()
+        {
+            //获取网段
+            string localIP = this.selectedLocalIP;
+            string[] ipStrArray = localIP.Split(new char[] { '.' });
+            string ipNetworkSegment = ipStrArray[0] + "." + ipStrArray[1] + "." + ipStrArray[2];
+
+            for (int i = 1; i <= 255; i++)
+            {
+                Ping myPing = new Ping();
+                myPing.PingCompleted += new PingCompletedEventHandler(_onPingCompleted);//添加回调事件
+                string pingIP = ipNetworkSegment + "." + i.ToString();
+                myPing.SendAsync(pingIP, 1000, null);
+            }
+        }
+        private void _onPingCompleted(object sender, PingCompletedEventArgs e)
+        {
+            if (e.Reply.Status == IPStatus.Success)
+            {
+                string ipaddress = e.Reply.Address.ToString();
+                onlineIPList.Add(ipaddress);
+
+                AddGridItemInvoke(skinDataGridView1, new IPAddressGridItem(ipaddress,"","","",false,false,"",""));
+            }
+        }
+
+        #region UI多线程添加到IP列表委托
+        private delegate void AddDataGridViewItemDelegate(DataGridView dataGridView, IPAddressGridItem item);
+        private void AddDataGridViewItem(DataGridView dataGridView, IPAddressGridItem item)
+        {
+            dataGridView.Rows.Add(item);
+        }
+
+        private void AddGridItemInvoke(DataGridView dataGridView, IPAddressGridItem item)
+        {
+            if (dataGridView.InvokeRequired)
+            {
+                dataGridView.Invoke(new AddDataGridViewItemDelegate(AddDataGridViewItem), dataGridView, item);
+            }
+            else
+            {
+                AddDataGridViewItem(dataGridView, item);
+            }
+        }
+        #endregion
+
+        [DllImport("ws2_32.dll")]
+        private static extern int inet_addr(string cp);
+        [DllImport("IPHLPAPI.dll")]
+        private static extern int SendARP(Int32 DestIP, Int32 SrcIP, ref Int64 pMacAddr, ref Int32 PhyAddrLen);
+        /// <summary>
+        /// 获取远程IP（不能跨网段）的MAC地址
+        /// </summary>
+        /// <param name="hostip"></param>
+        /// <returns></returns>
+        private string GetMacAddress(string hostip)
+        {
+            string Mac = "";
+            try
+            {
+                //将IP地址从 点数格式转换成无符号长整型
+                Int32 ldest = inet_addr(hostip);
+                Int64 macinfo = new Int64();
+                Int32 len = 6;
+                SendARP(ldest, 0, ref macinfo, ref len);
+                //转换成16进制,注意有些没有十二位
+                string TmpMac = Convert.ToString(macinfo, 16).PadLeft(12, '0');
+                Mac = TmpMac.Substring(0, 2).ToUpper();
+                for (int i = 2; i < TmpMac.Length; i = i + 2)
+                {
+                    Mac = TmpMac.Substring(i, 2).ToUpper() + "-" + Mac;
+                }
+            }
+            catch (Exception Mye)
+            {
+                Mac = "获取远程主机的MAC错误：" + Mye.Message;
+            }
+            return Mac;
+        }
+
         private void skinComboBox1ValueChange(object sender, EventArgs e)
         {
             string comboText = ((ComboBox)sender).Text;
+            this.selectedLocalIP = comboText;
             string[] ipStrArray = comboText.Split(new char[] { '.' });
             string ipNetworkSegment = ipStrArray[0] + "." + ipStrArray[1] + "." + ipStrArray[2] + ".*";
             skinLabel3.Text = ipNetworkSegment;

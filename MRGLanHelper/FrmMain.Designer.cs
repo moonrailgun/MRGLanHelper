@@ -37,7 +37,6 @@
             this.skinTabControl1 = new CCWin.SkinControl.SkinTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.skinLabel3 = new CCWin.SkinControl.SkinLabel();
-            this.skinProgressIndicator1 = new CCWin.SkinControl.SkinProgressIndicator();
             this.skinLabel2 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
@@ -103,7 +102,6 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.skinLabel3);
-            this.tabPage1.Controls.Add(this.skinProgressIndicator1);
             this.tabPage1.Controls.Add(this.skinLabel2);
             this.tabPage1.Controls.Add(this.skinLabel1);
             this.tabPage1.Controls.Add(this.skinButton1);
@@ -127,17 +125,6 @@
             this.skinLabel3.Name = "skinLabel3";
             this.skinLabel3.Size = new System.Drawing.Size(0, 17);
             this.skinLabel3.TabIndex = 17;
-            // 
-            // skinProgressIndicator1
-            // 
-            this.skinProgressIndicator1.AutoStart = true;
-            this.skinProgressIndicator1.BackColor = System.Drawing.Color.Transparent;
-            this.skinProgressIndicator1.Location = new System.Drawing.Point(335, 126);
-            this.skinProgressIndicator1.Name = "skinProgressIndicator1";
-            this.skinProgressIndicator1.Percentage = 0F;
-            this.skinProgressIndicator1.Size = new System.Drawing.Size(90, 90);
-            this.skinProgressIndicator1.TabIndex = 16;
-            this.skinProgressIndicator1.Text = "skinProgressIndicator1";
             // 
             // skinLabel2
             // 
@@ -388,7 +375,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ping;
         private CCWin.SkinControl.SkinComboBox skinComboBox1;
         private CCWin.SkinControl.SkinLabel skinLabel1;
-        private CCWin.SkinControl.SkinProgressIndicator skinProgressIndicator1;
         private CCWin.SkinControl.SkinLabel skinLabel2;
         private CCWin.SkinControl.SkinLabel skinLabel3;
     }
