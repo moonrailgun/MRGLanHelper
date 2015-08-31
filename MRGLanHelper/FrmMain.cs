@@ -84,7 +84,7 @@ namespace MRGLanHelper
                 pingList.Add(myPing);
                 myPing.PingCompleted += new PingCompletedEventHandler(_onPingCompleted);//添加回调事件
                 string pingIP = ipNetworkSegment + "." + i.ToString();
-                myPing.SendAsync(pingIP, 1000, null);
+                myPing.SendAsync(pingIP, 10000, null);
             }
         }
         private void _onPingCompleted(object sender, PingCompletedEventArgs e)
@@ -96,9 +96,10 @@ namespace MRGLanHelper
             if (e.Reply.Status == IPStatus.Success)
             {
                 string ipaddress = e.Reply.Address.ToString();
-                onlineIPList.Add(ipaddress);
+                string ping = string.Format("{0} (Ttl:{1} Len:{2})", e.Reply.RoundtripTime.ToString(), e.Reply.Options.Ttl.ToString(), e.Reply.Buffer.Length.ToString());
+                onlineIPList.Add(ipaddress);//添加到在线IP列表
                 
-                AddGridItemInvoke(skinDataGridView1, new IPAddressGridItem(ipaddress,"","","",false,false,"",""));
+                AddGridItemInvoke(skinDataGridView1, new IPAddressGridItem(ipaddress,"","","",false,false,"",ping));
             }
         }
 
