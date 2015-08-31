@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CCWin;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Runtime.InteropServices;
+using System.Net.Sockets;
 
 namespace MRGLanHelper
 {
@@ -20,7 +24,26 @@ namespace MRGLanHelper
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            //获取本机IP
+            string hostname = Dns.GetHostName();//得到本机名
+            IPHostEntry localhost = Dns.GetHostEntry(hostname);
+            IPAddress[] arrIPAddresses = localhost.AddressList;
+            foreach (IPAddress ip in arrIPAddresses)
+            {
+                if (ip.AddressFamily.Equals(AddressFamily.InterNetwork))
+                {
+                    //如果是IPv4地址
+                    string ipStr = ip.ToString();
+                    if (!skinComboBox1.Items.Contains(ipStr))
+                    {
+                        skinComboBox1.Items.Add(ipStr);
+                    }
 
+                    skinComboBox1.Text = ipStr;
+                }
+            }
+
+            //Dns.GetHostEntry(_myHostName).AddressList[0].ToString();
         }
 
         /// <summary>
@@ -65,6 +88,13 @@ namespace MRGLanHelper
         private void skinButton1_Click(object sender, EventArgs e)
         {
             this.UpdateLanList();
+        }
+        private void skinComboBox1ValueChange(object sender, EventArgs e)
+        {
+            string comboText = ((ComboBox)sender).Text;
+            string[] ipStrArray = comboText.Split(new char[] { '.' });
+            string ipNetworkSegment = ipStrArray[0] + "." + ipStrArray[1] + "." + ipStrArray[2] + ".*";
+            skinLabel3.Text = ipNetworkSegment;
         }
     }
 }

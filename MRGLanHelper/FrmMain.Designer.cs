@@ -36,10 +36,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.skinTabControl1 = new CCWin.SkinControl.SkinTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.skinLabel3 = new CCWin.SkinControl.SkinLabel();
+            this.skinProgressIndicator1 = new CCWin.SkinControl.SkinProgressIndicator();
+            this.skinLabel2 = new CCWin.SkinControl.SkinLabel();
+            this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
             this.skinDataGridView1 = new CCWin.SkinControl.SkinDataGridView();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.IPAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UpDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MacAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +50,9 @@
             this.IsRunShare = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.OSVersion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ping = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.skinComboBox1 = new CCWin.SkinControl.SkinComboBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.skinTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.skinDataGridView1)).BeginInit();
@@ -97,8 +102,13 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.skinLabel3);
+            this.tabPage1.Controls.Add(this.skinProgressIndicator1);
+            this.tabPage1.Controls.Add(this.skinLabel2);
+            this.tabPage1.Controls.Add(this.skinLabel1);
             this.tabPage1.Controls.Add(this.skinButton1);
             this.tabPage1.Controls.Add(this.skinDataGridView1);
+            this.tabPage1.Controls.Add(this.skinComboBox1);
             this.tabPage1.Location = new System.Drawing.Point(0, 36);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -106,6 +116,52 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // skinLabel3
+            // 
+            this.skinLabel3.AutoSize = true;
+            this.skinLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel3.BorderColor = System.Drawing.Color.White;
+            this.skinLabel3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel3.Location = new System.Drawing.Point(297, 6);
+            this.skinLabel3.Name = "skinLabel3";
+            this.skinLabel3.Size = new System.Drawing.Size(0, 17);
+            this.skinLabel3.TabIndex = 17;
+            // 
+            // skinProgressIndicator1
+            // 
+            this.skinProgressIndicator1.AutoStart = true;
+            this.skinProgressIndicator1.BackColor = System.Drawing.Color.Transparent;
+            this.skinProgressIndicator1.Location = new System.Drawing.Point(335, 126);
+            this.skinProgressIndicator1.Name = "skinProgressIndicator1";
+            this.skinProgressIndicator1.Percentage = 0F;
+            this.skinProgressIndicator1.Size = new System.Drawing.Size(90, 90);
+            this.skinProgressIndicator1.TabIndex = 16;
+            this.skinProgressIndicator1.Text = "skinProgressIndicator1";
+            // 
+            // skinLabel2
+            // 
+            this.skinLabel2.AutoSize = true;
+            this.skinLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel2.BorderColor = System.Drawing.Color.White;
+            this.skinLabel2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel2.Location = new System.Drawing.Point(3, 7);
+            this.skinLabel2.Name = "skinLabel2";
+            this.skinLabel2.Size = new System.Drawing.Size(55, 17);
+            this.skinLabel2.TabIndex = 15;
+            this.skinLabel2.Text = "IP地址：";
+            // 
+            // skinLabel1
+            // 
+            this.skinLabel1.AutoSize = true;
+            this.skinLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel1.BorderColor = System.Drawing.Color.White;
+            this.skinLabel1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel1.Location = new System.Drawing.Point(211, 6);
+            this.skinLabel1.Name = "skinLabel1";
+            this.skinLabel1.Size = new System.Drawing.Size(80, 17);
+            this.skinLabel1.TabIndex = 14;
+            this.skinLabel1.Text = "局域网网段：";
             // 
             // skinButton1
             // 
@@ -124,6 +180,9 @@
             // 
             // skinDataGridView1
             // 
+            this.skinDataGridView1.AllowUserToAddRows = false;
+            this.skinDataGridView1.AllowUserToDeleteRows = false;
+            this.skinDataGridView1.AllowUserToOrderColumns = true;
             this.skinDataGridView1.AlternatingCellBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.skinDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
@@ -170,6 +229,7 @@
             this.skinDataGridView1.MouseCellBackColor = System.Drawing.Color.White;
             this.skinDataGridView1.MultiSelect = false;
             this.skinDataGridView1.Name = "skinDataGridView1";
+            this.skinDataGridView1.ReadOnly = true;
             this.skinDataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.skinDataGridView1.RowHeadersVisible = false;
             this.skinDataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -185,6 +245,93 @@
             this.skinDataGridView1.TitleBack = null;
             this.skinDataGridView1.TitleBackColorBegin = System.Drawing.Color.White;
             this.skinDataGridView1.TitleBackColorEnd = System.Drawing.SystemColors.Control;
+            // 
+            // IPAddress
+            // 
+            this.IPAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.IPAddress.FillWeight = 150.7538F;
+            this.IPAddress.HeaderText = "IP地址";
+            this.IPAddress.Name = "IPAddress";
+            this.IPAddress.ReadOnly = true;
+            this.IPAddress.Width = 67;
+            // 
+            // UpDateTime
+            // 
+            this.UpDateTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.UpDateTime.FillWeight = 132.4343F;
+            this.UpDateTime.HeaderText = "最后更新时间";
+            this.UpDateTime.MinimumWidth = 120;
+            this.UpDateTime.Name = "UpDateTime";
+            this.UpDateTime.ReadOnly = true;
+            this.UpDateTime.Width = 120;
+            // 
+            // MacAddress
+            // 
+            this.MacAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.MacAddress.FillWeight = 117.1834F;
+            this.MacAddress.HeaderText = "MAC地址";
+            this.MacAddress.Name = "MacAddress";
+            this.MacAddress.ReadOnly = true;
+            this.MacAddress.Width = 84;
+            // 
+            // MacRemarkName
+            // 
+            this.MacRemarkName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.MacRemarkName.FillWeight = 104.4871F;
+            this.MacRemarkName.HeaderText = "MAC备注";
+            this.MacRemarkName.MinimumWidth = 100;
+            this.MacRemarkName.Name = "MacRemarkName";
+            this.MacRemarkName.ReadOnly = true;
+            // 
+            // IsRunHelper
+            // 
+            this.IsRunHelper.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.IsRunHelper.HeaderText = "是否开启助手";
+            this.IsRunHelper.Name = "IsRunHelper";
+            this.IsRunHelper.ReadOnly = true;
+            this.IsRunHelper.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.IsRunHelper.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IsRunHelper.Width = 104;
+            // 
+            // IsRunShare
+            // 
+            this.IsRunShare.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.IsRunShare.FillWeight = 93.91745F;
+            this.IsRunShare.HeaderText = "是否开启共享";
+            this.IsRunShare.Name = "IsRunShare";
+            this.IsRunShare.ReadOnly = true;
+            this.IsRunShare.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.IsRunShare.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IsRunShare.Width = 104;
+            // 
+            // OSVersion
+            // 
+            this.OSVersion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OSVersion.FillWeight = 85.11828F;
+            this.OSVersion.HeaderText = "操作系统";
+            this.OSVersion.MinimumWidth = 100;
+            this.OSVersion.Name = "OSVersion";
+            this.OSVersion.ReadOnly = true;
+            // 
+            // Ping
+            // 
+            this.Ping.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Ping.HeaderText = "Ping";
+            this.Ping.Name = "Ping";
+            this.Ping.ReadOnly = true;
+            this.Ping.Width = 57;
+            // 
+            // skinComboBox1
+            // 
+            this.skinComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.skinComboBox1.FormattingEnabled = true;
+            this.skinComboBox1.Location = new System.Drawing.Point(64, 5);
+            this.skinComboBox1.Name = "skinComboBox1";
+            this.skinComboBox1.Size = new System.Drawing.Size(121, 21);
+            this.skinComboBox1.TabIndex = 2;
+            this.skinComboBox1.Text = "请选择本地IP";
+            this.skinComboBox1.WaterText = "";
+            this.skinComboBox1.SelectedIndexChanged += new System.EventHandler(this.skinComboBox1ValueChange);
             // 
             // tabPage2
             // 
@@ -206,73 +353,6 @@
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // IPAddress
-            // 
-            this.IPAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.IPAddress.FillWeight = 150.7538F;
-            this.IPAddress.HeaderText = "IP地址";
-            this.IPAddress.Name = "IPAddress";
-            this.IPAddress.Width = 67;
-            // 
-            // UpDateTime
-            // 
-            this.UpDateTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.UpDateTime.FillWeight = 132.4343F;
-            this.UpDateTime.HeaderText = "最后更新时间";
-            this.UpDateTime.MinimumWidth = 120;
-            this.UpDateTime.Name = "UpDateTime";
-            this.UpDateTime.Width = 120;
-            // 
-            // MacAddress
-            // 
-            this.MacAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.MacAddress.FillWeight = 117.1834F;
-            this.MacAddress.HeaderText = "MAC地址";
-            this.MacAddress.Name = "MacAddress";
-            this.MacAddress.Width = 84;
-            // 
-            // MacRemarkName
-            // 
-            this.MacRemarkName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.MacRemarkName.FillWeight = 104.4871F;
-            this.MacRemarkName.HeaderText = "MAC备注";
-            this.MacRemarkName.MinimumWidth = 100;
-            this.MacRemarkName.Name = "MacRemarkName";
-            // 
-            // IsRunHelper
-            // 
-            this.IsRunHelper.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.IsRunHelper.HeaderText = "是否开启助手";
-            this.IsRunHelper.Name = "IsRunHelper";
-            this.IsRunHelper.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.IsRunHelper.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.IsRunHelper.Width = 104;
-            // 
-            // IsRunShare
-            // 
-            this.IsRunShare.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.IsRunShare.FillWeight = 93.91745F;
-            this.IsRunShare.HeaderText = "是否开启共享";
-            this.IsRunShare.Name = "IsRunShare";
-            this.IsRunShare.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.IsRunShare.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.IsRunShare.Width = 104;
-            // 
-            // OSVersion
-            // 
-            this.OSVersion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OSVersion.FillWeight = 85.11828F;
-            this.OSVersion.HeaderText = "操作系统";
-            this.OSVersion.MinimumWidth = 100;
-            this.OSVersion.Name = "OSVersion";
-            // 
-            // Ping
-            // 
-            this.Ping.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Ping.HeaderText = "Ping";
-            this.Ping.Name = "Ping";
-            this.Ping.Width = 57;
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -284,6 +364,7 @@
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.skinTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.skinDataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -305,6 +386,11 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsRunShare;
         private System.Windows.Forms.DataGridViewTextBoxColumn OSVersion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ping;
+        private CCWin.SkinControl.SkinComboBox skinComboBox1;
+        private CCWin.SkinControl.SkinLabel skinLabel1;
+        private CCWin.SkinControl.SkinProgressIndicator skinProgressIndicator1;
+        private CCWin.SkinControl.SkinLabel skinLabel2;
+        private CCWin.SkinControl.SkinLabel skinLabel3;
     }
 }
 
