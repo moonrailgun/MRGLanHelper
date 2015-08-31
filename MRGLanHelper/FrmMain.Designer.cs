@@ -52,6 +52,7 @@
             this.skinComboBox1 = new CCWin.SkinControl.SkinComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.skinProgressBar1 = new CCWin.SkinControl.SkinProgressBar();
             this.skinTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.skinDataGridView1)).BeginInit();
@@ -101,6 +102,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.skinProgressBar1);
             this.tabPage1.Controls.Add(this.skinLabel3);
             this.tabPage1.Controls.Add(this.skinLabel2);
             this.tabPage1.Controls.Add(this.skinLabel1);
@@ -155,7 +157,7 @@
             this.skinButton1.BackColor = System.Drawing.Color.Transparent;
             this.skinButton1.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton1.DownBack = null;
-            this.skinButton1.Location = new System.Drawing.Point(681, 3);
+            this.skinButton1.Location = new System.Drawing.Point(678, 3);
             this.skinButton1.MouseBack = null;
             this.skinButton1.Name = "skinButton1";
             this.skinButton1.NormlBack = null;
@@ -340,6 +342,20 @@
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // skinProgressBar1
+            // 
+            this.skinProgressBar1.Back = null;
+            this.skinProgressBar1.BackColor = System.Drawing.Color.Transparent;
+            this.skinProgressBar1.BarBack = null;
+            this.skinProgressBar1.BarRadiusStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinProgressBar1.ForeColor = System.Drawing.Color.Red;
+            this.skinProgressBar1.Location = new System.Drawing.Point(572, 3);
+            this.skinProgressBar1.Name = "skinProgressBar1";
+            this.skinProgressBar1.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinProgressBar1.Size = new System.Drawing.Size(100, 23);
+            this.skinProgressBar1.TabIndex = 18;
+            this.skinProgressBar1.Visible = false;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -377,6 +393,7 @@
         private CCWin.SkinControl.SkinLabel skinLabel1;
         private CCWin.SkinControl.SkinLabel skinLabel2;
         private CCWin.SkinControl.SkinLabel skinLabel3;
+        private CCWin.SkinControl.SkinProgressBar skinProgressBar1;
     }
 }
 

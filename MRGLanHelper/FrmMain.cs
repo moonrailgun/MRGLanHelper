@@ -21,6 +21,7 @@ namespace MRGLanHelper
     {
         public string selectedLocalIP = "";
         List<string> onlineIPList = new List<string>();
+        List<Ping> pingList = new List<Ping>();
 
         public FrmMain()
         {
@@ -69,6 +70,9 @@ namespace MRGLanHelper
 
         private void GetLanOnlineIP()
         {
+            skinProgressBar1.Visible = true;//显示进度条
+            skinButton1.Enabled = false;//使刷新按钮失效
+
             //获取网段
             string localIP = this.selectedLocalIP;
             string[] ipStrArray = localIP.Split(new char[] { '.' });
@@ -77,6 +81,7 @@ namespace MRGLanHelper
             for (int i = 1; i <= 255; i++)
             {
                 Ping myPing = new Ping();
+                pingList.Add(myPing);
                 myPing.PingCompleted += new PingCompletedEventHandler(_onPingCompleted);//添加回调事件
                 string pingIP = ipNetworkSegment + "." + i.ToString();
                 myPing.SendAsync(pingIP, 1000, null);
@@ -84,17 +89,46 @@ namespace MRGLanHelper
         }
         private void _onPingCompleted(object sender, PingCompletedEventArgs e)
         {
+            System.Net.NetworkInformation.Ping myPing = (Ping)sender;
+            pingList.Remove(myPing);
+            UpdateProgressBarInvoke();//更新进度条
+
             if (e.Reply.Status == IPStatus.Success)
             {
                 string ipaddress = e.Reply.Address.ToString();
                 onlineIPList.Add(ipaddress);
-
+                
                 AddGridItemInvoke(skinDataGridView1, new IPAddressGridItem(ipaddress,"","","",false,false,"",""));
             }
         }
 
         #region UI多线程添加到IP列表委托
+        private delegate void UpdateClient();
         private delegate void AddDataGridViewItemDelegate(DataGridView dataGridView, IPAddressGridItem item);
+        private void UpdateProgressBar()
+        {
+            float percent = 1 - (float)pingList.Count / 255;
+            int value = Convert.ToInt32(percent * 100);
+            skinProgressBar1.Value = value;
+
+            if (value == 100)
+            {
+                skinProgressBar1.Visible = false;
+                skinButton1.Enabled = true;
+            }
+        }
+        private void UpdateProgressBarInvoke()
+        {
+            if (skinProgressBar1.InvokeRequired)
+            {
+                skinProgressBar1.Invoke(new UpdateClient(UpdateProgressBar));
+            }
+            else
+            {
+                UpdateProgressBar();
+            }
+        }
+
         private void AddDataGridViewItem(DataGridView dataGridView, IPAddressGridItem item)
         {
             dataGridView.Rows.Add(item);
