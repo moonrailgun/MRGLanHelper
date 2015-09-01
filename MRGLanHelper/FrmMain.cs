@@ -102,7 +102,7 @@ namespace MRGLanHelper
                     pingList.Add(myPing);
                     myPing.PingCompleted += new PingCompletedEventHandler(_onPingCompleted);//添加回调事件
                     string pingIP = ipNetworkSegment + "." + i.ToString();
-                    myPing.SendAsync(pingIP, 10000, null);
+                    myPing.SendAsync(pingIP, 5000, null);
                 }
             }
             catch (Exception ex)
@@ -113,6 +113,7 @@ namespace MRGLanHelper
         private void _onPingCompleted(object sender, PingCompletedEventArgs e)
         {
             System.Net.NetworkInformation.Ping myPing = (Ping)sender;
+
             pingList.Remove(myPing);
             UpdateProgressBarInvoke();//更新进度条
 
@@ -120,9 +121,11 @@ namespace MRGLanHelper
             {
                 string ipaddress = e.Reply.Address.ToString();
                 string ping = string.Format("{0}ms (Ttl:{1} Len:{2})", e.Reply.RoundtripTime.ToString(), e.Reply.Options.Ttl.ToString(), e.Reply.Buffer.Length.ToString());
+                string mac = GetMacAddress(ipaddress);
+                string updateTime = this.GetDateTime();
                 onlineIPList.Add(ipaddress);//添加到在线IP列表
-                
-                AddGridItemInvoke(skinDataGridView1, new IPAddressGridItem(ipaddress,"","","",false,false,"",ping));
+
+                AddGridItemInvoke(skinDataGridView1, new IPAddressGridItem(ipaddress,"", updateTime, mac, "", false, false, "", ping));
             }
 
             if (!e.Cancelled)
@@ -145,6 +148,9 @@ namespace MRGLanHelper
                 skinProgressBar1.Visible = false;
                 skinButton1.Enabled = true;
             }
+
+            //更新在线数
+            skinLabel5.Text = onlineIPList.Count.ToString();
         }
         private void UpdateProgressBarInvoke()
         {
@@ -192,6 +198,7 @@ namespace MRGLanHelper
             {
                 //将IP地址从 点数格式转换成无符号长整型
                 Int32 ldest = inet_addr(hostip);
+                Int32 lhost = inet_addr(this.selectedLocalIP);
                 Int64 macinfo = new Int64();
                 Int32 len = 6;
                 SendARP(ldest, 0, ref macinfo, ref len);
@@ -203,11 +210,19 @@ namespace MRGLanHelper
                     Mac = TmpMac.Substring(i, 2).ToUpper() + "-" + Mac;
                 }
             }
-            catch (Exception Mye)
+            catch (Exception ex)
             {
-                Mac = "获取远程主机的MAC错误：" + Mye.Message;
+                Mac = "获取远程主机的MAC错误：" + ex.Message;
             }
             return Mac;
+        }
+
+        private string GetDateTime()
+        {
+            DateTime time = DateTime.Now;
+            string str = time.ToString("HH:mm:ss");
+
+            return str;
         }
 
         private void skinComboBox1ValueChange(object sender, EventArgs e)

@@ -36,12 +36,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.skinTabControl1 = new CCWin.SkinControl.SkinTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.skinLabel4 = new CCWin.SkinControl.SkinLabel();
+            this.skinProgressBar1 = new CCWin.SkinControl.SkinProgressBar();
             this.skinLabel3 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel2 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
             this.skinDataGridView1 = new CCWin.SkinControl.SkinDataGridView();
             this.IPAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HostName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UpDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MacAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MacRemarkName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,7 +55,7 @@
             this.skinComboBox1 = new CCWin.SkinControl.SkinComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.skinProgressBar1 = new CCWin.SkinControl.SkinProgressBar();
+            this.skinLabel5 = new CCWin.SkinControl.SkinLabel();
             this.skinTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.skinDataGridView1)).BeginInit();
@@ -102,6 +105,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.skinLabel5);
+            this.tabPage1.Controls.Add(this.skinLabel4);
             this.tabPage1.Controls.Add(this.skinProgressBar1);
             this.tabPage1.Controls.Add(this.skinLabel3);
             this.tabPage1.Controls.Add(this.skinLabel2);
@@ -117,13 +122,39 @@
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // skinLabel4
+            // 
+            this.skinLabel4.AutoSize = true;
+            this.skinLabel4.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel4.BorderColor = System.Drawing.Color.White;
+            this.skinLabel4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel4.Location = new System.Drawing.Point(379, 7);
+            this.skinLabel4.Name = "skinLabel4";
+            this.skinLabel4.Size = new System.Drawing.Size(104, 17);
+            this.skinLabel4.TabIndex = 19;
+            this.skinLabel4.Text = "局域网用户数量：";
+            // 
+            // skinProgressBar1
+            // 
+            this.skinProgressBar1.Back = null;
+            this.skinProgressBar1.BackColor = System.Drawing.Color.Transparent;
+            this.skinProgressBar1.BarBack = null;
+            this.skinProgressBar1.BarRadiusStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinProgressBar1.ForeColor = System.Drawing.Color.Red;
+            this.skinProgressBar1.Location = new System.Drawing.Point(572, 3);
+            this.skinProgressBar1.Name = "skinProgressBar1";
+            this.skinProgressBar1.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinProgressBar1.Size = new System.Drawing.Size(100, 23);
+            this.skinProgressBar1.TabIndex = 18;
+            this.skinProgressBar1.Visible = false;
+            // 
             // skinLabel3
             // 
             this.skinLabel3.AutoSize = true;
             this.skinLabel3.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel3.BorderColor = System.Drawing.Color.White;
             this.skinLabel3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel3.Location = new System.Drawing.Point(297, 6);
+            this.skinLabel3.Location = new System.Drawing.Point(277, 6);
             this.skinLabel3.Name = "skinLabel3";
             this.skinLabel3.Size = new System.Drawing.Size(0, 17);
             this.skinLabel3.TabIndex = 17;
@@ -146,7 +177,7 @@
             this.skinLabel1.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel1.BorderColor = System.Drawing.Color.White;
             this.skinLabel1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel1.Location = new System.Drawing.Point(211, 6);
+            this.skinLabel1.Location = new System.Drawing.Point(191, 7);
             this.skinLabel1.Name = "skinLabel1";
             this.skinLabel1.Size = new System.Drawing.Size(80, 17);
             this.skinLabel1.TabIndex = 14;
@@ -192,6 +223,7 @@
             this.skinDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.skinDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IPAddress,
+            this.HostName,
             this.UpDateTime,
             this.MacAddress,
             this.MacRemarkName,
@@ -243,6 +275,13 @@
             this.IPAddress.Name = "IPAddress";
             this.IPAddress.ReadOnly = true;
             this.IPAddress.Width = 67;
+            // 
+            // HostName
+            // 
+            this.HostName.HeaderText = "主机名";
+            this.HostName.Name = "HostName";
+            this.HostName.ReadOnly = true;
+            this.HostName.Width = 68;
             // 
             // UpDateTime
             // 
@@ -342,19 +381,16 @@
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // skinProgressBar1
+            // skinLabel5
             // 
-            this.skinProgressBar1.Back = null;
-            this.skinProgressBar1.BackColor = System.Drawing.Color.Transparent;
-            this.skinProgressBar1.BarBack = null;
-            this.skinProgressBar1.BarRadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinProgressBar1.ForeColor = System.Drawing.Color.Red;
-            this.skinProgressBar1.Location = new System.Drawing.Point(572, 3);
-            this.skinProgressBar1.Name = "skinProgressBar1";
-            this.skinProgressBar1.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinProgressBar1.Size = new System.Drawing.Size(100, 23);
-            this.skinProgressBar1.TabIndex = 18;
-            this.skinProgressBar1.Visible = false;
+            this.skinLabel5.AutoSize = true;
+            this.skinLabel5.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel5.BorderColor = System.Drawing.Color.White;
+            this.skinLabel5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel5.Location = new System.Drawing.Point(489, 7);
+            this.skinLabel5.Name = "skinLabel5";
+            this.skinLabel5.Size = new System.Drawing.Size(0, 17);
+            this.skinLabel5.TabIndex = 20;
             // 
             // FrmMain
             // 
@@ -381,7 +417,13 @@
         private System.Windows.Forms.TabPage tabPage1;
         private CCWin.SkinControl.SkinButton skinButton1;
         private CCWin.SkinControl.SkinDataGridView skinDataGridView1;
+        private CCWin.SkinControl.SkinComboBox skinComboBox1;
+        private CCWin.SkinControl.SkinLabel skinLabel1;
+        private CCWin.SkinControl.SkinLabel skinLabel2;
+        private CCWin.SkinControl.SkinLabel skinLabel3;
+        private CCWin.SkinControl.SkinProgressBar skinProgressBar1;
         private System.Windows.Forms.DataGridViewTextBoxColumn IPAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HostName;
         private System.Windows.Forms.DataGridViewTextBoxColumn UpDateTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn MacAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn MacRemarkName;
@@ -389,11 +431,8 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsRunShare;
         private System.Windows.Forms.DataGridViewTextBoxColumn OSVersion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ping;
-        private CCWin.SkinControl.SkinComboBox skinComboBox1;
-        private CCWin.SkinControl.SkinLabel skinLabel1;
-        private CCWin.SkinControl.SkinLabel skinLabel2;
-        private CCWin.SkinControl.SkinLabel skinLabel3;
-        private CCWin.SkinControl.SkinProgressBar skinProgressBar1;
+        private CCWin.SkinControl.SkinLabel skinLabel4;
+        private CCWin.SkinControl.SkinLabel skinLabel5;
     }
 }
 
