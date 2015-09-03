@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CCWin;
+using System.Net;
+using System.Threading;
 
 namespace MRGLanHelper
 {
@@ -17,6 +19,10 @@ namespace MRGLanHelper
         {
             InitializeComponent();
         }
+
+        public static HttpListener listener = new HttpListener();
+        private Thread ThreadListener = null;
+        public static string WebPath = Application.StartupPath + "\\web\\";
 
         private void Start(object sender, EventArgs e)
         {

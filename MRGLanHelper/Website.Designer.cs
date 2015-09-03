@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("节点1");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("节点2");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("节点3");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("节点0", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3});
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("节点1");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("节点2");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("节点3");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("节点0", new System.Windows.Forms.TreeNode[] {
+            treeNode9,
+            treeNode10,
+            treeNode11});
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
             this.skinNumericUpDown1 = new CCWin.SkinControl.SkinNumericUpDown();
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
@@ -42,6 +42,7 @@
             this.skinButton3 = new CCWin.SkinControl.SkinButton();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.skinTreeView1 = new CCWin.SkinControl.SkinTreeView();
+            this.skinLabel2 = new CCWin.SkinControl.SkinLabel();
             ((System.ComponentModel.ISupportInitialize)(this.skinNumericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -138,24 +139,37 @@
             // 
             this.skinTreeView1.Location = new System.Drawing.Point(92, 80);
             this.skinTreeView1.Name = "skinTreeView1";
-            treeNode1.Name = "节点1";
-            treeNode1.Text = "节点1";
-            treeNode2.Name = "节点2";
-            treeNode2.Text = "节点2";
-            treeNode3.Name = "节点3";
-            treeNode3.Text = "节点3";
-            treeNode4.Name = "节点0";
-            treeNode4.Text = "节点0";
+            treeNode9.Name = "节点1";
+            treeNode9.Text = "节点1";
+            treeNode10.Name = "节点2";
+            treeNode10.Text = "节点2";
+            treeNode11.Name = "节点3";
+            treeNode11.Text = "节点3";
+            treeNode12.Name = "节点0";
+            treeNode12.Text = "节点0";
             this.skinTreeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode12});
             this.skinTreeView1.Size = new System.Drawing.Size(193, 152);
             this.skinTreeView1.TabIndex = 6;
+            // 
+            // skinLabel2
+            // 
+            this.skinLabel2.AutoSize = true;
+            this.skinLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel2.BorderColor = System.Drawing.Color.White;
+            this.skinLabel2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel2.Location = new System.Drawing.Point(8, 175);
+            this.skinLabel2.Name = "skinLabel2";
+            this.skinLabel2.Size = new System.Drawing.Size(32, 17);
+            this.skinLabel2.TabIndex = 7;
+            this.skinLabel2.Text = "状态";
             // 
             // Website
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 263);
+            this.Controls.Add(this.skinLabel2);
             this.Controls.Add(this.skinTreeView1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.skinButton3);
@@ -180,5 +194,6 @@
         private CCWin.SkinControl.SkinButton skinButton3;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private CCWin.SkinControl.SkinTreeView skinTreeView1;
+        private CCWin.SkinControl.SkinLabel skinLabel2;
     }
 }
